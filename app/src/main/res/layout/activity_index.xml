@@ -8,12 +8,19 @@
     tools:context="com.purelink.cluelin.catalog.IndexActivity">
 
     <TextView
+        android:id="@+id/majorCategoryNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="50dp"
         android:layout_margin="20dp"
         android:text="Index Name"
         android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="넘기기"
+        android:onClick="onClick"/>
 
 
 

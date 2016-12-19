@@ -3,6 +3,7 @@ package com.purelink.cluelin.catalog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class CatalogContents extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class CatalogContents extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             Intent intent = getIntent();
+
             //get pdf name, from main Activity.
             String pdfNameString = intent.getStringExtra(PdfRenderer.CONTENTS_SELECTOR);
 
@@ -32,4 +34,5 @@ public class CatalogContents extends AppCompatActivity {
                     .commit();
         }
     }
+
 }
