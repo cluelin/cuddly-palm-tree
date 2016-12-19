@@ -42,6 +42,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
     private static final String STATE_CURRENT_PAGE_INDEX = "current_page_index";
     private static String PDF_NAME_IN_ASSET;
     private static String PDF_NAME_IN_DEVICE;
+    테스트 수정
 
     private static ArrayList<Bitmap> bitmap = new ArrayList<>();
 
