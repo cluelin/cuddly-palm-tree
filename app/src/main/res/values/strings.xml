@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Catalog</string>
+    <string name="title_activity_sub">subActivity</string>
+    <string name="info">Info</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+</resources>
