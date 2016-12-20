@@ -252,6 +252,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
 
         // We are ready to show the Bitmap to user.
         mImageView.setImageBitmap(bitmap);
+        mCurrentPage.close();
 
         //제스처 및 zoom in and out.
         new PhotoViewAttacher(mImageView);
