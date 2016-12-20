@@ -109,7 +109,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        mImageView = (ImageView) view.findViewById(R.id.image);
+        mImageView = (ImageView) view.findViewById(R.id.image);
         mButtonPrevious = (Button) view.findViewById(R.id.previous);
         mButtonNext = (Button) view.findViewById(R.id.next);
 
@@ -128,12 +128,11 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
         Log.d("timeStamp", "showPage 호출 직전");
 
         //To converting ViewPager type.
-        convertImageToBitmap();
-        ViewPager mViewPager = (HackyViewPager) view.findViewById(R.id.view_pager);
+//        convertImageToBitmap();
+//        ViewPager mViewPager = (HackyViewPager) view.findViewById(R.id.view_pager);
+//        mViewPager.setAdapter(new SamplePagerAdapter());
 
-        mViewPager.setAdapter(new SamplePagerAdapter());
-
-//        showPage(index);
+        showPage(index);
     }
 
     static class SamplePagerAdapter extends PagerAdapter {
@@ -235,7 +234,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
 
         // Make sure to close the current page before opening another one.
         if (null != mCurrentPage) {
-            mCurrentPage.close();
+//            mCurrentPage.close();
         }
 
         // Use `openPage` to open a specific page in PDF.
