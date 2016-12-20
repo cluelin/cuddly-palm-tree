@@ -37,8 +37,7 @@ import java.util.Random;
 
 public class PdfRenderer extends Fragment implements View.OnClickListener {
 
-    //Decide which contents open.
-    public static final String CONTENTS_SELECTOR = "CONTENTS_SELECTOR";
+
     private static final String STATE_CURRENT_PAGE_INDEX = "current_page_index";
     private static String PDF_NAME_IN_ASSET;
     private static String PDF_NAME_IN_DEVICE;
@@ -113,6 +112,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
 //        mImageView = (ImageView) view.findViewById(R.id.image);
         mButtonPrevious = (Button) view.findViewById(R.id.previous);
         mButtonNext = (Button) view.findViewById(R.id.next);
+
         // Bind events.
         mButtonPrevious.setOnClickListener(this);
         mButtonNext.setOnClickListener(this);
@@ -221,7 +221,14 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
 
 //    original showPage. deactivate for ViewPager test
 
-   /* private void showPage(int index) {
+
+    //Pdf 를 통째로 랜더링 하는 PdfRenderer 가 있고 이걸 이용해서 하나의 페이지를 open한게
+    //CurrentPage로 들어간다.
+    //CurrentPage가 또다시 랜더링해서, bitmap 인스턴스에 랜더링 된다.
+    //그 bitmap 인스턴스를 imageView에 뿌려줌으로써 Pdf한장이 화면에 표시되게한다.
+    //updateUI를 함으로써 현재 페이지 상황(index)와 전후 가능 설정을 한다.
+    //다음 페이지가 열려야 할때, currentPage를 close해줌으로써 화면을 깨끗하게 하는 효과를 보는거 같다.
+    private void showPage(int index) {
         if (mPdfRenderer.getPageCount() <= index) {
             return;
         }
@@ -251,7 +258,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
         new PhotoViewAttacher(mImageView);
 
         updateUi();
-    }*/
+    }
 
 
     private void convertImageToBitmap() {
@@ -273,6 +280,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
         }
 
     }
+
 
     private void updateUi() {
         int index = mCurrentPage.getIndex();
@@ -337,7 +345,7 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        /*switch (view.getId()) {
+        switch (view.getId()) {
             case R.id.previous: {
                 // Move to the previous page
                 showPage(mCurrentPage.getIndex() - 1);
@@ -352,6 +360,6 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
             }
 
 
-        }*/
+        }
     }
 }
