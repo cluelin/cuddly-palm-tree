@@ -3,7 +3,6 @@ package com.purelink.cluelin.catalog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 public class CatalogContents extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class CatalogContents extends AppCompatActivity {
             Intent intent = getIntent();
 
             //get pdf name, from main Activity.
-            String pdfNameString = intent.getStringExtra(MainActivity.CONTENTS_SELECTOR);
+            String pdfNameString = intent.getStringExtra(INDEX_SELECTION.CONTENTS_SELECTOR);
 
             //add pdfNameString to bundle object
             Bundle pdfNameBundle = new Bundle();

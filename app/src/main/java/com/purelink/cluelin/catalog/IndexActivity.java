@@ -3,9 +3,11 @@ package com.purelink.cluelin.catalog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.Serializable;
 
 
 public class IndexActivity extends AppCompatActivity {
@@ -21,8 +23,15 @@ public class IndexActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         //get pdf name, from main Activity.
-        majorCategoryNameString = intent.getStringExtra(MainActivity.CONTENTS_SELECTOR);
-        majorCategoryNameTextView.setText(majorCategoryNameString);
+//        majorCategoryNameString = intent.getStringExtra(INDEX_SELECTION.CONTENTS_SELECTOR);
+//        majorCategoryNameTextView.setText(majorCategoryNameString);
+
+        Category category = (Category)intent.getParcelableExtra(INDEX_SELECTION.CONTENTS_SELECTOR);
+
+        Log.d("확인차원", "Name : " + category.getCategoryName());
+        Log.d("확인차원", "subCategory List : " + category.getSubCategoryList().get(0));
+
+
 
 
     }
@@ -33,23 +42,23 @@ public class IndexActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CatalogContents.class);
 
         switch (majorCategoryNameString){
-            case MainActivity.MATRIXT:
+            case INDEX_SELECTION.MATRIXT:
                 break;
-            case MainActivity.PRESENTATION:
+            case INDEX_SELECTION.PRESENTATION:
                 break;
-            case MainActivity.EXTENDER:
+            case INDEX_SELECTION.EXTENDER:
                 break;
-            case MainActivity.SWITCHER:
+            case INDEX_SELECTION.SWITCHER:
                 break;
-            case MainActivity.CONVERTER:
+            case INDEX_SELECTION.CONVERTER:
                 break;
-            case MainActivity.CABLE:
+            case INDEX_SELECTION.CABLE:
                 break;
-            case MainActivity.SOLUTION:
+            case INDEX_SELECTION.SOLUTION:
                 break;
         }
 
-        intent.putExtra(MainActivity.CONTENTS_SELECTOR, majorCategoryNameString);
+        intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, majorCategoryNameString);
 
         startActivity(intent);
 
