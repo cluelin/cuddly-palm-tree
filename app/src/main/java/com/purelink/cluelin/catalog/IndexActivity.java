@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import com.purelink.cluelin.catalog.Category.Category;
+
 import java.util.ArrayList;
 
 
@@ -29,10 +30,6 @@ public class IndexActivity extends AppCompatActivity {
         linearLayout = (LinearLayout) findViewById(R.id.activity_index);
 
         Intent intent = getIntent();
-
-        //get pdf name, from main Activity.
-//        majorCategoryNameString = intent.getStringExtra(INDEX_SELECTION.CONTENTS_SELECTOR);
-//        majorCategoryNameTextView.setText(majorCategoryNameString);
 
         category = intent.getParcelableExtra(INDEX_SELECTION.CONTENTS_SELECTOR);
 

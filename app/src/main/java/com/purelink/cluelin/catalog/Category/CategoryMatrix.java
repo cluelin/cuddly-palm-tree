@@ -1,9 +1,7 @@
-package com.purelink.cluelin.catalog;
+package com.purelink.cluelin.catalog.Category;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import com.purelink.cluelin.catalog.INDEX_SELECTION;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**

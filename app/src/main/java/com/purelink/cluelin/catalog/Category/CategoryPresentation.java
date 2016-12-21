@@ -1,6 +1,7 @@
-package com.purelink.cluelin.catalog;
+package com.purelink.cluelin.catalog.Category;
 
-import java.io.Serializable;
+import com.purelink.cluelin.catalog.INDEX_SELECTION;
+
 import java.util.ArrayList;
 
 /**
