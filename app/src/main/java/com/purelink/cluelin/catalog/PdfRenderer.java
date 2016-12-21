@@ -42,24 +42,11 @@ public class PdfRenderer extends Fragment {
     private static String PDF_NAME_IN_ASSET;
     private static String PDF_NAME_IN_DEVICE;
 
-    private static ArrayList<Bitmap> bitmap = new ArrayList<>();
+    private static ArrayList<Bitmap> bitmap;
 
 
     private android.graphics.pdf.PdfRenderer mPdfRenderer;
     private android.graphics.pdf.PdfRenderer.Page mCurrentPage;
-    private ParcelFileDescriptor mFileDescriptor;
-
-    private ImageView mImageView;
-
-    /**
-     * {@link android.widget.Button} to move to the previous page.
-     */
-    private Button mButtonPrevious;
-
-    /**
-     * {@link android.widget.Button} to move to the next page.
-     */
-    private Button mButtonNext;
 
     public PdfRenderer() {
 
@@ -68,6 +55,8 @@ public class PdfRenderer extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+        bitmap = new ArrayList<>();
 
         //activity send PDF_NAME_IN_ASSET in Bundle object.
         PDF_NAME_IN_ASSET = getArguments().getString("PDF_NAME_IN_ASSET");
@@ -205,6 +194,8 @@ public class PdfRenderer extends Fragment {
 //        if (null != mCurrentPage) {
 //            mCurrentPage.close();
 //        }
+
+        bitmap = null;
         mPdfRenderer.close();
 
     }
