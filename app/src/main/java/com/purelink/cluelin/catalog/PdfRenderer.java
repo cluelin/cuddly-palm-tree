@@ -109,7 +109,6 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        mImageView = (ImageView) view.findViewById(R.id.image);
         mButtonPrevious = (Button) view.findViewById(R.id.previous);
         mButtonNext = (Button) view.findViewById(R.id.next);
 
@@ -133,7 +132,6 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
 
         mViewPager.setAdapter(new SamplePagerAdapter());
 
-//        showPage(index);
     }
 
     static class SamplePagerAdapter extends PagerAdapter {
@@ -219,47 +217,6 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
 
     }
 
-//    original showPage. deactivate for ViewPager test
-
-
-    //Pdf 를 통째로 랜더링 하는 PdfRenderer 가 있고 이걸 이용해서 하나의 페이지를 open한게
-    //CurrentPage로 들어간다.
-    //CurrentPage가 또다시 랜더링해서, bitmap 인스턴스에 랜더링 된다.
-    //그 bitmap 인스턴스를 imageView에 뿌려줌으로써 Pdf한장이 화면에 표시되게한다.
-    //updateUI를 함으로써 현재 페이지 상황(index)와 전후 가능 설정을 한다.
-    //다음 페이지가 열려야 할때, currentPage를 close해줌으로써 화면을 깨끗하게 하는 효과를 보는거 같다.
-    private void showPage(int index) {
-        if (mPdfRenderer.getPageCount() <= index) {
-            return;
-        }
-
-        // Make sure to close the current page before opening another one.
-        if (null != mCurrentPage) {
-            mCurrentPage.close();
-        }
-
-        // Use `openPage` to open a specific page in PDF.
-        mCurrentPage = mPdfRenderer.openPage(index);
-
-        // Important: the destination bitmap must be ARGB (not RGB).
-        Bitmap bitmap = Bitmap.createBitmap(mCurrentPage.getWidth(), mCurrentPage.getHeight(),
-                Bitmap.Config.ARGB_8888);
-
-        // Here, we render the page onto the Bitmap.
-        // To render a portion of the page, use the second and third parameter. Pass nulls to get
-        // the default result.
-        // Pass either RENDER_MODE_FOR_DISPLAY or RENDER_MODE_FOR_PRINT for the last parameter.
-        mCurrentPage.render(bitmap, null, null, android.graphics.pdf.PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
-
-        // We are ready to show the Bitmap to user.
-        mImageView.setImageBitmap(bitmap);
-
-        //제스처 및 zoom in and out.
-        new PhotoViewAttacher(mImageView);
-
-        updateUi();
-    }
-
 
     private void convertImageToBitmap() {
 
@@ -267,10 +224,11 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
         for (int i = 0; i < mPdfRenderer.getPageCount(); i++) {
             // Use `openPage` to open a specific page in PDF.
             mCurrentPage = mPdfRenderer.openPage(i);
-            // Important: the destination bitmap must be ARGB (not RGB).
 
+            // Important: the destination bitmap must be ARGB (not RGB).
             bitmap.add(Bitmap.createBitmap(mCurrentPage.getWidth(), mCurrentPage.getHeight(),
                     Bitmap.Config.ARGB_8888));
+
             // Here, we render the page onto the Bitmap.
             // To render a portion of the page, use the second and third parameter. Pass nulls to get
             // the default result.
@@ -278,15 +236,6 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
             mCurrentPage.render(bitmap.get(i), null, null, android.graphics.pdf.PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
             mCurrentPage.close();
         }
-
-    }
-
-
-    private void updateUi() {
-        int index = mCurrentPage.getIndex();
-        int pageCount = mPdfRenderer.getPageCount();
-        mButtonPrevious.setEnabled(0 != index);
-        mButtonNext.setEnabled(index + 1 < pageCount);
 
     }
 
@@ -342,24 +291,4 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-            case R.id.previous: {
-                // Move to the previous page
-                showPage(mCurrentPage.getIndex() - 1);
-                break;
-            }
-            case R.id.next: {
-                // Move to the next page
-                Log.d("name", mCurrentPage.getIndex() + "");
-                showPage(mCurrentPage.getIndex() + 1);
-                break;
-
-            }
-
-
-        }
-    }
 }
