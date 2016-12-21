@@ -35,7 +35,7 @@ import java.util.Random;
  * Created by cluelin on 2016-12-07.
  */
 
-public class PdfRenderer extends Fragment {
+public class PdfRenderingPage extends Fragment {
 
 
     private static final String STATE_CURRENT_PAGE_INDEX = "current_page_index";
@@ -48,7 +48,7 @@ public class PdfRenderer extends Fragment {
     private android.graphics.pdf.PdfRenderer mPdfRenderer;
     private android.graphics.pdf.PdfRenderer.Page mCurrentPage;
 
-    public PdfRenderer() {
+    public PdfRenderingPage() {
 
     }
 
@@ -162,7 +162,7 @@ public class PdfRenderer extends Fragment {
         /*AssetManager assetManager = getActivity().getAssets();
         File file = new File("android.resource://" + getActivity().getPackageName() + "/raw/"+PDF_NAME_IN_ASSET);
 
-        mPdfRenderer = new android.graphics.pdf.PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
+        mPdfRenderer = new android.graphics.pdf.PdfRenderingPage(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
         try {
             ParcelFileDescriptor.fromFd(assetManager.openFd(PDF_NAME_IN_ASSET));
         }*/
@@ -180,12 +180,12 @@ public class PdfRenderer extends Fragment {
 
 //        this is original code. but doesn't work.
         /*mFileDescriptor = context.getAssets().openFd(PDF_NAME_IN_ASSET).getParcelFileDescriptor();
-        mPdfRenderer = new android.graphics.pdf.PdfRenderer(mFileDescriptor);*/
+        mPdfRenderer = new android.graphics.pdf.PdfRenderingPage(mFileDescriptor);*/
 
         //change pdf file location to res/raw. but doesn't work.
         /*Resources res = context.getResources();
         mFileDescriptor = res.openRawResourceFd(R.raw.matrix_catalog).getParcelFileDescriptor();
-        mPdfRenderer = new android.graphics.pdf.PdfRenderer(mFileDescriptor);*/
+        mPdfRenderer = new android.graphics.pdf.PdfRenderingPage(mFileDescriptor);*/
 
 
     }

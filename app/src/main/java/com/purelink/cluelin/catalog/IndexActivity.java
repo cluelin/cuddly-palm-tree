@@ -51,6 +51,7 @@ public class IndexActivity extends AppCompatActivity {
             Button button = new Button(this);
             button.setText((String)subCategoryList.get(i));
             linearLayout.addView(button);
+
         }
 
     }

@@ -23,11 +23,13 @@ public class CatalogContents extends AppCompatActivity {
             Bundle pdfNameBundle = new Bundle();
             pdfNameBundle.putString("PDF_NAME_IN_ASSET", pdfNameString);
 
-            //send bundle object to PdfRenderer, which is Fragment.
-            PdfRenderer pdfRenderer = new PdfRenderer();
+            //send bundle object to PdfRenderingPage which is rendering PdfPage to bitmap
+            PdfRenderingPage pdfRenderer = new PdfRenderingPage();
             pdfRenderer.setArguments(pdfNameBundle);
 
 
+            //pdfRenderer is subClass of Fragment
+            //add pdfRederer to container.
             getFragmentManager().beginTransaction()
                     .add(R.id.container, pdfRenderer)
                     .commit();
