@@ -18,7 +18,7 @@ public class CatalogContents extends AppCompatActivity {
             Intent intent = getIntent();
 
             //get pdf name, from main Activity.
-            String pdfNameString = intent.getStringExtra(PdfRenderer.CONTENTS_SELECTOR);
+            String pdfNameString = intent.getStringExtra(MainActivity.CONTENTS_SELECTOR);
 
             //add pdfNameString to bundle object
             Bundle pdfNameBundle = new Bundle();

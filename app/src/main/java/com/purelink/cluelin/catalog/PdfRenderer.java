@@ -35,7 +35,7 @@ import java.util.Random;
  * Created by cluelin on 2016-12-07.
  */
 
-public class PdfRenderer extends Fragment implements View.OnClickListener {
+public class PdfRenderer extends Fragment {
 
 
     private static final String STATE_CURRENT_PAGE_INDEX = "current_page_index";
@@ -108,14 +108,6 @@ public class PdfRenderer extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mButtonPrevious = (Button) view.findViewById(R.id.previous);
-        mButtonNext = (Button) view.findViewById(R.id.next);
-
-        // Bind events.
-        mButtonPrevious.setOnClickListener(this);
-        mButtonNext.setOnClickListener(this);
-
 
         // Show the first page by default.
         int index = 0;

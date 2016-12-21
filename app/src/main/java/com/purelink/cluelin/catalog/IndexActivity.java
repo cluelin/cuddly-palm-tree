@@ -21,7 +21,7 @@ public class IndexActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         //get pdf name, from main Activity.
-        majorCategoryNameString = intent.getStringExtra(PdfRenderer.CONTENTS_SELECTOR);
+        majorCategoryNameString = intent.getStringExtra(MainActivity.CONTENTS_SELECTOR);
         majorCategoryNameTextView.setText(majorCategoryNameString);
 
 
