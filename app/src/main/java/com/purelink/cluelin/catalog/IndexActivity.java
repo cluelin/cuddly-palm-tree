@@ -14,7 +14,7 @@ import com.purelink.cluelin.catalog.Category.Category;
 import java.util.ArrayList;
 
 
-public class IndexActivity extends AppCompatActivity {
+public class IndexActivity extends AppCompatActivity implements View.OnClickListener{
 
     String majorCategoryNameString;
     private Category category;
@@ -50,7 +50,10 @@ public class IndexActivity extends AppCompatActivity {
         for (int i = 0 ; i < subCategoryList.size() ; i++ ){
             Button button = new Button(this);
             button.setText((String)subCategoryList.get(i));
+            button.setOnClickListener(this);
             linearLayout.addView(button);
+
+            Log.d("타이밍", "setIndexPage");
 
         }
 
@@ -60,25 +63,7 @@ public class IndexActivity extends AppCompatActivity {
     public void onClick(View v){
 
         Intent intent = new Intent(this, CatalogContents.class);
-
-        switch (majorCategoryNameString){
-            case INDEX_SELECTION.MATRIXT:
-                break;
-            case INDEX_SELECTION.PRESENTATION:
-                break;
-            case INDEX_SELECTION.EXTENDER:
-                break;
-            case INDEX_SELECTION.SWITCHER:
-                break;
-            case INDEX_SELECTION.CONVERTER:
-                break;
-            case INDEX_SELECTION.CABLE:
-                break;
-            case INDEX_SELECTION.SOLUTION:
-                break;
-        }
-
-        intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, majorCategoryNameString);
+        intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, category.getPdfFileName());
 
         startActivity(intent);
 
