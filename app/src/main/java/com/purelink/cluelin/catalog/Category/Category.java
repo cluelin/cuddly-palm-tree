@@ -17,6 +17,8 @@ public class Category implements Parcelable {
     private ArrayList subCategoryList;
     private ArrayList subCategoryIndexPageList;
 
+    private int startPage;
+
 
     public Category() {
 
@@ -54,6 +56,13 @@ public class Category implements Parcelable {
         this.subCategoryList = subCategoryList;
     }
 
+    public int getStartPage() {
+        return startPage;
+    }
+
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
 
     @Override
     public int describeContents() {

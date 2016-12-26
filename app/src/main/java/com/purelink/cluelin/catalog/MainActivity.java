@@ -31,25 +31,25 @@ public class MainActivity extends AppCompatActivity {
         //send selected pdf name
         switch (view.getId()) {
             case R.id.indexButtonMatrix:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategoryMatrix());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryMatrix());
                 break;
             case R.id.indexButtonPresentation:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategoryPresentation());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryPresentation());
                 break;
             case R.id.indexButtonExtender:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategoryExtender());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryExtender());
                 break;
             case R.id.indexButtonSwitcher:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategorySwitcher());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategorySwitcher());
                 break;
             case R.id.indexButtonConverter:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategoryConverter());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryConverter());
                 break;
             case R.id.indexButtonCable:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategoryCable());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryCable());
                 break;
             case R.id.indexButtonSolution:
-                intent.putExtra(INDEX_SELECTION.CONTENTS_SELECTOR, new CategorySolution());
+                intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategorySolution());
                 break;
 
         }

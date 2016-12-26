@@ -7,7 +7,8 @@ package com.purelink.cluelin.catalog;
 public interface INDEX_SELECTION {
 
     //Decide which contents open.
-    String CONTENTS_SELECTOR = "CONTENTS_SELECTOR";
+    String PDF_NAME = "PDF_NAME";
+    String PDF_PAGE = "PDF_PAGE";
     String MATRIXT = "matrix_catalog.pdf";
     String PRESENTATION = "presentation_systems.pdf";
     String EXTENDER = "extender.pdf";

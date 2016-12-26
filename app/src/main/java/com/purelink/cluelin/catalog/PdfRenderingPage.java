@@ -48,9 +48,17 @@ public class PdfRenderingPage extends Fragment {
     private android.graphics.pdf.PdfRenderer mPdfRenderer;
     private android.graphics.pdf.PdfRenderer.Page mCurrentPage;
 
+    private int targetPage;
+
     public PdfRenderingPage() {
 
     }
+
+    public int getTargetPage(){
+
+        return targetPage;
+    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -60,6 +68,7 @@ public class PdfRenderingPage extends Fragment {
 
         //activity send PDF_NAME_IN_ASSET in Bundle object.
         PDF_NAME_IN_ASSET = getArguments().getString("PDF_NAME_IN_ASSET");
+        targetPage = getArguments().getInt("PDF_PAGE_IN_ASSET");
         PDF_NAME_IN_DEVICE = PDF_NAME_IN_ASSET;
 
         Log.d("timeStamp", "PDF_NAME_IN_ASSET : " + PDF_NAME_IN_ASSET);
@@ -111,13 +120,14 @@ public class PdfRenderingPage extends Fragment {
         convertImageToBitmap();
         ViewPager mViewPager = (HackyViewPager) view.findViewById(R.id.view_pager);
 
+
         mViewPager.setAdapter(new SamplePagerAdapter());
+        mViewPager.setCurrentItem(targetPage);
 
     }
 
     static class SamplePagerAdapter extends PagerAdapter {
 
-        //Page 될 이미지 목록.
 
         @Override
         public int getCount() {
