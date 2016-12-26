@@ -67,6 +67,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     //when each subCategory clicked.
     public void onClick(View v) {
 
+        Log.d("time", "서브 카테고리 클릭됨");
+
         Intent intent = new Intent(this, CatalogContents.class);
         intent.putExtra(INDEX_SELECTION.PDF_NAME, "purelink2016.pdf");
 

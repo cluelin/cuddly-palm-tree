@@ -180,10 +180,14 @@ public class PdfRenderingPage extends Fragment {
 
         //this is working.
         //copy pdf file from asset to sd card.
-
         File file = new File(getActivity().getFilesDir().getPath() + "/" + PDF_NAME_IN_DEVICE);
         if (!file.exists()) {
+
+            long start = System.currentTimeMillis();
             CopyReadAssets();
+            long end = System.currentTimeMillis();
+
+            Log.d("time", "CopyReadAssets(), load pdf file : " + (end - start)/1000.0);
         }
         Log.d("timeStamp", "파일 패스 : " + getActivity().getCacheDir().getPath() + "/" + PDF_NAME_IN_DEVICE);
         mPdfRenderer = new android.graphics.pdf.PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
@@ -213,6 +217,8 @@ public class PdfRenderingPage extends Fragment {
 
     private void convertImageToBitmap() {
 
+        long start = System.currentTimeMillis();
+
         //All page convert to bitmap type.
         for (int i = 0; i < mPdfRenderer.getPageCount(); i++) {
             // Use `openPage` to open a specific page in PDF.
@@ -229,6 +235,10 @@ public class PdfRenderingPage extends Fragment {
             mCurrentPage.render(bitmap.get(i), null, null, android.graphics.pdf.PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
             mCurrentPage.close();
         }
+
+        long end = System.currentTimeMillis();
+
+        Log.d("time", "convertImageToBitmap(), convert pdf file : " + (end - start)/1000.0);
 
     }
 
