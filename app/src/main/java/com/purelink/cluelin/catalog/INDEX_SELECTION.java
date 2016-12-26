@@ -8,7 +8,7 @@ public interface INDEX_SELECTION {
 
     //Decide which contents open.
     String PDF_NAME = "PDF_NAME";
-    String PDF_PAGE = "PDF_PAGE";
+    String TARGET_PAGE = "TARGET_PAGE";
     String MATRIXT = "matrix_catalog.pdf";
     String PRESENTATION = "presentation_systems.pdf";
     String EXTENDER = "extender.pdf";

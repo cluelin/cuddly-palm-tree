@@ -18,11 +18,12 @@ public class CatalogContents extends AppCompatActivity {
 
             //get pdf name, from main Activity.
             String pdfNameString = intent.getStringExtra(INDEX_SELECTION.PDF_NAME);
-            int targetPage = intent.getIntExtra(INDEX_SELECTION.PDF_PAGE, 0 );
+            int targetPage = intent.getIntExtra(INDEX_SELECTION.TARGET_PAGE, 0 );
 
             //add pdfNameString to bundle object
             Bundle pdfNameBundle = new Bundle();
-            pdfNameBundle.putString("PDF_NAME_IN_ASSET", "purelink2016.pdf");
+
+            pdfNameBundle.putString("PDF_NAME_IN_ASSET", pdfNameString);
             pdfNameBundle.putInt("PDF_PAGE_IN_ASSET", targetPage);
 
             //send bundle object to PdfRenderingPage which is rendering PdfPage to bitmap

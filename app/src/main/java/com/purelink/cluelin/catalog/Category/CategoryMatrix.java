@@ -10,24 +10,41 @@ import java.util.ArrayList;
 
 public class CategoryMatrix extends Category {
 
-    private ArrayList arrayList = new ArrayList<String>();
+    private ArrayList<String> subCategoryList = new ArrayList();
+    private ArrayList<Integer> indexList = new ArrayList();
 
     public CategoryMatrix(){
-
-        arrayList.add("PM");
-        arrayList.add("UX");
-        arrayList.add("HX");
-        arrayList.add("HTX");
-        arrayList.add("MXA");
-        arrayList.add("MX");
 
         setCategoryName("Matrix");
 
         setPdfFileName(INDEX_SELECTION.MATRIXT);
-        setSubCategoryList(arrayList);
+
+        makeSubCategoryList();
+        setSubCategoryList(subCategoryList);
+
+        makeIndexList();
+        setIndexPageList(indexList);
+
+    }
+
+    private void makeSubCategoryList(){
+        subCategoryList.add("PM");
+        subCategoryList.add("UX");
+        subCategoryList.add("HX");
+        subCategoryList.add("HTX");
+        subCategoryList.add("MXA");
+        subCategoryList.add("MX");
 
 
+    }
 
+    private  void makeIndexList(){
+        indexList.add(5);
+        indexList.add(14);
+        indexList.add(16);
+        indexList.add(21);
+        indexList.add(23);
+        indexList.add(24);
     }
 
 }

@@ -53,6 +53,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         for (int i = 0; i < subCategoryList.size(); i++) {
             CustomButton button = new CustomButton(this);
             button.setText((String) subCategoryList.get(i));
+            button.setId(i);
             button.setOnClickListener(this);
             button.setTextSize(20);
 
@@ -67,11 +68,13 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         Intent intent = new Intent(this, CatalogContents.class);
-        intent.putExtra(INDEX_SELECTION.PDF_NAME, category.getPdfFileName());
+        intent.putExtra(INDEX_SELECTION.PDF_NAME, "purelink2016.pdf");
 
-        //here should be implement.
         //send target pdf page
-        intent.putExtra(INDEX_SELECTION.PDF_PAGE, 10);
+        //can be improve.
+        //but now it works.
+        //maybe later..
+        intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList(v.getId()));
 
         startActivity(intent);
 
