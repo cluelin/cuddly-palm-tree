@@ -41,8 +41,9 @@ public class PdfRenderingPage extends Fragment {
     private static final String STATE_CURRENT_PAGE_INDEX = "current_page_index";
     private static String PDF_NAME_IN_ASSET;
     private static String PDF_NAME_IN_DEVICE;
+    private static Boolean FlagForBitmap = false;
 
-    private static ArrayList<Bitmap> bitmap;
+    public static ArrayList<Bitmap> bitmap = new ArrayList<>();
 
 
     private android.graphics.pdf.PdfRenderer mPdfRenderer;
@@ -54,17 +55,9 @@ public class PdfRenderingPage extends Fragment {
 
     }
 
-    public int getTargetPage(){
-
-        return targetPage;
-    }
-
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
-        bitmap = new ArrayList<>();
 
         //activity send PDF_NAME_IN_ASSET in Bundle object.
         PDF_NAME_IN_ASSET = getArguments().getString("PDF_NAME_IN_ASSET");
@@ -117,7 +110,9 @@ public class PdfRenderingPage extends Fragment {
         Log.d("timeStamp", "showPage 호출 직전");
 
         //To converting ViewPager type.
-        convertImageToBitmap();
+        if (!FlagForBitmap) {
+            convertImageToBitmap();
+        }
         ViewPager mViewPager = (HackyViewPager) view.findViewById(R.id.view_pager);
 
 
@@ -205,11 +200,8 @@ public class PdfRenderingPage extends Fragment {
     }
 
     private void closeRenderer() throws IOException {
-//        if (null != mCurrentPage) {
-//            mCurrentPage.close();
-//        }
 
-        bitmap = null;
+
         mPdfRenderer.close();
 
     }
@@ -239,6 +231,8 @@ public class PdfRenderingPage extends Fragment {
         long end = System.currentTimeMillis();
 
         Log.d("time", "convertImageToBitmap(), convert pdf file : " + (end - start)/1000.0);
+
+        FlagForBitmap = true;
 
     }
 
