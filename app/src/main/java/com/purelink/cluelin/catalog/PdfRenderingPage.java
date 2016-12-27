@@ -67,25 +67,25 @@ public class PdfRenderingPage extends Fragment {
         Log.d("timeStamp", "PDF_NAME_IN_ASSET : " + PDF_NAME_IN_ASSET);
 
 
-        try {
-            openRenderer(activity);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(activity, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            activity.finish();
-        }
+//        try {
+//            openRenderer(activity);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Toast.makeText(activity, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//            activity.finish();
+//        }
 
     }
 
 
     @Override
     public void onDetach() {
-        try {
-            closeRenderer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            closeRenderer();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         super.onDetach();
     }
 
@@ -110,9 +110,11 @@ public class PdfRenderingPage extends Fragment {
         Log.d("timeStamp", "showPage 호출 직전");
 
         //To converting ViewPager type.
-        if (!FlagForBitmap) {
-            convertImageToBitmap();
+        if (bitmap == null) {
+//            convertImageToBitmap();
         }
+
+        bitmap = LogoActivity.bitmap;
         ViewPager mViewPager = (HackyViewPager) view.findViewById(R.id.view_pager);
 
 
@@ -122,6 +124,7 @@ public class PdfRenderingPage extends Fragment {
     }
 
     static class SamplePagerAdapter extends PagerAdapter {
+
 
 
         @Override
@@ -176,14 +179,7 @@ public class PdfRenderingPage extends Fragment {
         //this is working.
         //copy pdf file from asset to sd card.
         File file = new File(getActivity().getFilesDir().getPath() + "/" + PDF_NAME_IN_DEVICE);
-        if (!file.exists()) {
 
-            long start = System.currentTimeMillis();
-            CopyReadAssets();
-            long end = System.currentTimeMillis();
-
-            Log.d("time", "CopyReadAssets(), load pdf file : " + (end - start)/1000.0);
-        }
         Log.d("timeStamp", "파일 패스 : " + getActivity().getCacheDir().getPath() + "/" + PDF_NAME_IN_DEVICE);
         mPdfRenderer = new android.graphics.pdf.PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
 
@@ -230,62 +226,11 @@ public class PdfRenderingPage extends Fragment {
 
         long end = System.currentTimeMillis();
 
-        Log.d("time", "convertImageToBitmap(), convert pdf file : " + (end - start)/1000.0);
+        Log.d("time", "convertImageToBitmap(), convert pdf file : " + (end - start) / 1000.0);
 
         FlagForBitmap = true;
 
     }
 
-    private void CopyReadAssets() {
-        AssetManager assetManager = getActivity().getAssets();
-
-        InputStream in = null;
-        OutputStream out = null;
-
-        File file;
-
-        while (true) {
-
-            //디렉토리에 있는 PDF_NAME_IN_DEVICE 파일을 찾아서
-            file = new File(getActivity().getFilesDir(), PDF_NAME_IN_DEVICE);
-
-            Log.d("timeStamp", "파일 패스 : " + file.getAbsolutePath());
-
-            if (file.exists()) {
-                Log.d("timeStamp", PDF_NAME_IN_DEVICE + " 파일 존재");
-                PDF_NAME_IN_DEVICE = new Random().nextInt() + ".pdf";
-                Log.d("timeStamp", "파일 이름 변경 : " + PDF_NAME_IN_DEVICE);
-
-            } else
-                break;
-        }
-
-
-        try {
-            Log.d("timeStamp", "에셋 파일 갈아타기 시도. " + file.getName());
-
-            in = assetManager.open(PDF_NAME_IN_ASSET);
-
-            Log.d("timeStamp", "에셋 파일 읽기 성공");
-            out = getActivity().openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
-
-            copyFile(in, out);
-            in.close();
-            in = null;
-            out.flush();
-            out.close();
-            out = null;
-        } catch (Exception e) {
-            Log.e("tag", e.getMessage());
-        }
-    }
-
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024];
-        int read;
-        while ((read = in.read(buffer)) != -1) {
-            out.write(buffer, 0, read);
-        }
-    }
 
 }
