@@ -70,13 +70,13 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         Log.d("time", "서브 카테고리 클릭됨");
 
         Intent intent = new Intent(this, CatalogContents.class);
-        intent.putExtra(INDEX_SELECTION.PDF_NAME, "purelink2016.pdf");
+        intent.putExtra(INDEX_SELECTION.PDF_NAME, category.getPdfFileName());
 
         //send target pdf page
         //can be improve.
         //but now it works.
         //maybe later..
-        intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList(v.getId()));
+        intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList().get(v.getId()));
 
         startActivity(intent);
 

@@ -19,5 +19,7 @@ public class CategoryPresentation extends Category{
         setCategoryName("Presentation");
         setPdfFileName(INDEX_SELECTION.PRESENTATION);
         setSubCategoryList(arrayList);
+        getIndexPageList().add(0);
     }
+
 }

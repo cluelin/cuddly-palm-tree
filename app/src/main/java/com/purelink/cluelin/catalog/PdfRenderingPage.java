@@ -3,11 +3,13 @@ package com.purelink.cluelin.catalog;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.purelink.cluelin.catalog.Library.PhotoView;
 import com.purelink.cluelin.catalog.Library.PhotoViewAttacher;
 
@@ -41,7 +44,7 @@ public class PdfRenderingPage extends Fragment {
     private static final String STATE_CURRENT_PAGE_INDEX = "current_page_index";
     private static String PDF_NAME_IN_ASSET;
     private static String PDF_NAME_IN_DEVICE;
-    private static Boolean FlagForBitmap = false;
+    public static Boolean FlagForBitmap = false;
 
     public static ArrayList<Bitmap> bitmap = new ArrayList<>();
 
@@ -67,14 +70,18 @@ public class PdfRenderingPage extends Fragment {
         Log.d("timeStamp", "PDF_NAME_IN_ASSET : " + PDF_NAME_IN_ASSET);
 
 
-        try {
-            openRenderer(activity);
+        if (!FlagForBitmap){
+            try {
+                openRenderer(activity);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(activity, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            activity.finish();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(activity, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                activity.finish();
+            }
         }
+
+
 
     }
 
@@ -234,6 +241,23 @@ public class PdfRenderingPage extends Fragment {
 
         FlagForBitmap = true;
 
+
+        //bitmap 저장
+
+        SharedPreferences appSharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(bitmap);
+        prefsEditor.putString("MyObject", json);
+        prefsEditor.commit();
+
+
+
+    }
+
+    private void saveImageFile(){
+        File file = new File(getActivity().getFilesDir(), "imageFile");
     }
 
     private void CopyReadAssets() {

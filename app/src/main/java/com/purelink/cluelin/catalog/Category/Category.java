@@ -14,8 +14,8 @@ public class Category implements Parcelable {
     private String categoryName;
     private String pdfFileName;
 
-    private ArrayList<String> subCategoryList;
-    private ArrayList<Integer> indexPageList;
+    private ArrayList<String> subCategoryList = new ArrayList<>();
+    private ArrayList<Integer> indexPageList = new ArrayList<>();
 
     private int startPage;
 
@@ -40,8 +40,8 @@ public class Category implements Parcelable {
         this.pdfFileName = pdfFileName;
     }
 
-    public int getIndexPageList(int index) {
-        return indexPageList.get(index);
+    public ArrayList<Integer> getIndexPageList() {
+        return indexPageList;
     }
 
     public void setIndexPageList(ArrayList indexPageList) {
