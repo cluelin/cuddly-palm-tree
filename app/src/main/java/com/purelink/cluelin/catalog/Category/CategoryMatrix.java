@@ -1,5 +1,7 @@
 package com.purelink.cluelin.catalog.Category;
 
+import android.util.Log;
+
 import com.purelink.cluelin.catalog.INDEX_SELECTION;
 
 import java.util.ArrayList;
@@ -22,9 +24,16 @@ public class CategoryMatrix extends Category {
         makeSubCategoryList();
         setSubCategoryList(subCategoryList);
 
-        makeIndexList();
-        setIndexPageList(indexList);
+        getIndexPageList().add(6);
+        getIndexPageList().add(14);
+        getIndexPageList().add(16);
+        getIndexPageList().add(21);
+        getIndexPageList().add(23);
+        getIndexPageList().add(24);
 
+
+        setStartPage(6);
+        setEndPage(25);
     }
 
     private void makeSubCategoryList(){
@@ -38,13 +47,5 @@ public class CategoryMatrix extends Category {
 
     }
 
-    private  void makeIndexList(){
-        indexList.add(5);
-        indexList.add(14);
-        indexList.add(16);
-        indexList.add(21);
-        indexList.add(23);
-        indexList.add(24);
-    }
 
 }

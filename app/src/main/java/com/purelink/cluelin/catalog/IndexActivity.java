@@ -33,8 +33,12 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = getIntent();
         category = intent.getParcelableExtra(INDEX_SELECTION.PDF_NAME);
 
-        Log.d("확인차원", "Name : " + category.getCategoryName());
-        Log.d("확인차원", "subCategory List : " + category.getSubCategoryList().get(0));
+        Log.d("태그", "Name : " + category.getCategoryName());
+        Log.d("태그", "subCategory List : " + category.getSubCategoryList().get(0));
+        Log.d("태그", "IndexList : " + category.getIndexPageList().get(0));
+        Log.d("태그", "startPage : " + category.getStartPage());
+
+
 
         setIndexPage();
 
@@ -77,6 +81,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         //but now it works.
         //maybe later..
         intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList().get(v.getId()));
+
+        intent.putExtra(INDEX_SELECTION.START_PAGE, category.getStartPage());
+        intent.putExtra(INDEX_SELECTION.END_PAGE, category.getEndPage());
+        
+
 
         startActivity(intent);
 

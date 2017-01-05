@@ -11,16 +11,19 @@ import java.util.ArrayList;
 
 public class CategorySwitcher extends Category {
 
-    private ArrayList arrayList = new ArrayList<String>();
+
 
     public CategorySwitcher(){
 
-        arrayList.add("HDMI");
-        arrayList.add("DVI");
+        getSubCategoryList().add("HDMI");
+        getSubCategoryList().add("DVI");
+
+        getIndexPageList().add(62);
+        getIndexPageList().add(68);
 
         setCategoryName("Switcher");
         setPdfFileName(INDEX_SELECTION.SWITCHER);
-        setSubCategoryList(arrayList);
+
     }
 
 }

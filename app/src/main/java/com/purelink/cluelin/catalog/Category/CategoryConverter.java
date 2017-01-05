@@ -10,14 +10,15 @@ import java.util.ArrayList;
 
 public class CategoryConverter extends Category {
 
-    private ArrayList arrayList = new ArrayList<String>();
+
 
     public CategoryConverter(){
 
-        arrayList.add("no list");
+        getSubCategoryList().add("no list");
+        getIndexPageList().add(72);
 
         setCategoryName("Converter");
         setPdfFileName(INDEX_SELECTION.CONVERTER);
-        setSubCategoryList(arrayList);
+
     }
 }

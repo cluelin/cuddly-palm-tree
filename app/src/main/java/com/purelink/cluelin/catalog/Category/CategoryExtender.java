@@ -9,17 +9,22 @@ import java.util.ArrayList;
  */
 
 public class CategoryExtender extends Category {
-    private ArrayList arrayList = new ArrayList<String>();
+
 
     public CategoryExtender(){
 
-        arrayList.add("HDMI");
-        arrayList.add("DVI");
-        arrayList.add("HDBaseT");
-        arrayList.add("Fiber Optic");
+        getSubCategoryList().add("HDMI");
+        getSubCategoryList().add("DVI");
+        getSubCategoryList().add("HDBaseT");
+        getSubCategoryList().add("Fiber Optic");
+
+        getIndexPageList().add(32);
+        getIndexPageList().add(40);
+        getIndexPageList().add(42);
+        getIndexPageList().add(49);
 
         setCategoryName("Extender");
         setPdfFileName(INDEX_SELECTION.EXTENDER);
-        setSubCategoryList(arrayList);
+
     }
 }

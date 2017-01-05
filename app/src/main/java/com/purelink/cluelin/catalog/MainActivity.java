@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.purelink.cluelin.catalog.Category.Category;
 import com.purelink.cluelin.catalog.Category.CategoryCable;
 import com.purelink.cluelin.catalog.Category.CategoryConverter;
 import com.purelink.cluelin.catalog.Category.CategoryExtender;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.indexButtonMatrix:
                 intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryMatrix());
+
                 break;
             case R.id.indexButtonPresentation:
                 intent.putExtra(INDEX_SELECTION.PDF_NAME, new CategoryPresentation());

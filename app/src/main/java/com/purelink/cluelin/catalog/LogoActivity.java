@@ -2,21 +2,12 @@ package com.purelink.cluelin.catalog;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LogoActivity extends AppCompatActivity {
+
+    public static CatalogPDF catalogPDF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +31,25 @@ public class LogoActivity extends AppCompatActivity {
         };
         logoTimer.start();
 
-        SharedPreferences appSharedPrefs = PreferenceManager
-                .getDefaultSharedPreferences(this.getApplicationContext());
-        Gson gson = new Gson();
-        try{
-            String json = appSharedPrefs.getString("MyObject", "");
-            Type type = new TypeToken<ArrayList<Bitmap>>(){}.getType();
-            ArrayList<Bitmap> bitmap= gson.fromJson(json, type);
+        catalogPDF = new CatalogPDF(this);
 
-
-            Log.d("tag", "비트맵 복원함 ㅎㅎ");
-            PdfRenderingPage.FlagForBitmap = false;
-            PdfRenderingPage.bitmap = bitmap;
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+//
+//        SharedPreferences appSharedPrefs = PreferenceManager
+//                .getDefaultSharedPreferences(this.getApplicationContext());
+//        Gson gson = new Gson();
+//        try{
+//            String json = appSharedPrefs.getString("MyObject", "");
+//            Type type = new TypeToken<ArrayList<Bitmap>>(){}.getType();
+//            ArrayList<Bitmap> bitmap= gson.fromJson(json, type);
+//
+//
+//            Log.d("tag", "비트맵 복원함 ㅎㅎ");
+//            ImageViewPager.FlagForBitmap = false;
+//            ImageViewPager.bitmap = bitmap;
+//
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
 
     }
 }

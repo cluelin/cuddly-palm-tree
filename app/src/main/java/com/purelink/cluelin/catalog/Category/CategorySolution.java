@@ -10,14 +10,15 @@ import java.util.ArrayList;
 
 public class CategorySolution extends Category {
 
-    private ArrayList arrayList = new ArrayList<String>();
+
 
     public CategorySolution(){
 
-        arrayList.add("no");
+        getSubCategoryList().add("no subcategory");
+        getIndexPageList().add(76);
 
         setCategoryName("Solution");
         setPdfFileName(INDEX_SELECTION.SOLUTION);
-        setSubCategoryList(arrayList);
+
     }
 }

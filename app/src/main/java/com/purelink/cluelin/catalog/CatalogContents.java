@@ -27,9 +27,11 @@ public class CatalogContents extends AppCompatActivity {
 
             pdfNameBundle.putString("PDF_NAME_IN_ASSET", pdfNameString);
             pdfNameBundle.putInt("PDF_PAGE_IN_ASSET", targetPage);
+            pdfNameBundle.putInt(INDEX_SELECTION.START_PAGE, intent.getIntExtra(INDEX_SELECTION.START_PAGE, 0));
+            pdfNameBundle.putInt(INDEX_SELECTION.END_PAGE, intent.getIntExtra(INDEX_SELECTION.END_PAGE, 0));
 
-            //send bundle object to PdfRenderingPage which is rendering PdfPage to bitmap
-            PdfRenderingPage pdfRendererPage = new PdfRenderingPage();
+            //send bundle object to ImageViewPager which is rendering PdfPage to bitmap
+            ImageViewPager pdfRendererPage = new ImageViewPager();
             pdfRendererPage.setArguments(pdfNameBundle);
 
 

@@ -10,16 +10,17 @@ import java.util.ArrayList;
 
 public class CategoryPresentation extends Category{
 
-    private ArrayList arrayList = new ArrayList<String>();
+
 
     public CategoryPresentation(){
 
-        arrayList.add("no list");
+
 
         setCategoryName("Presentation");
         setPdfFileName(INDEX_SELECTION.PRESENTATION);
-        setSubCategoryList(arrayList);
-        getIndexPageList().add(0);
+        getSubCategoryList().add("No sub category");
+
+        getIndexPageList().add(28);
     }
 
 }

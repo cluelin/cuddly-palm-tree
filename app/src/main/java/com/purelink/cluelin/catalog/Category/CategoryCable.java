@@ -10,17 +10,22 @@ import java.util.ArrayList;
 
 public class CategoryCable extends Category {
 
-    private ArrayList arrayList = new ArrayList<String>();
+
 
     public CategoryCable(){
 
-        arrayList.add("CX Series");
-        arrayList.add("EZ Series");
-        arrayList.add("PI Series");
-        arrayList.add("PS Series");
+        getSubCategoryList().add("CX Series");
+        getSubCategoryList().add("EZ Series");
+        getSubCategoryList().add("PI Series");
+        getSubCategoryList().add("PS Series");
+
+        getIndexPageList().add(82);
+        getIndexPageList().add(83);
+        getIndexPageList().add(85);
+        getIndexPageList().add(89);
 
         setCategoryName("Cable");
         setPdfFileName(INDEX_SELECTION.CABLE);
-        setSubCategoryList(arrayList);
+
     }
 }
