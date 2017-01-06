@@ -21,6 +21,9 @@ public class CategorySwitcher extends Category {
         getIndexPageList().add(62);
         getIndexPageList().add(68);
 
+        setStartPage(62);
+        setEndPage(68);
+
         setCategoryName("Switcher");
         setPdfFileName(INDEX_SELECTION.SWITCHER);
 

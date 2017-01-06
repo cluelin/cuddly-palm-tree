@@ -2,6 +2,7 @@ package com.purelink.cluelin.catalog.Category;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * Created by cluelin on 2016-12-21.
  */
 
-public class Category implements Parcelable {
+public class Category implements Parcelable{
 
     private String categoryName;
     private String pdfFileName;
@@ -21,8 +22,18 @@ public class Category implements Parcelable {
     public int startPage;
     public int endPage;
 
+    boolean isNoSubCategory = false;
+
     public Category() {
 
+    }
+
+    public boolean isNoSubCategory() {
+        return isNoSubCategory;
+    }
+
+    public void setNoSubCategory(boolean noSubCategory) {
+        isNoSubCategory = noSubCategory;
     }
 
     public String getCategoryName() {
@@ -89,6 +100,7 @@ public class Category implements Parcelable {
         out.writeSerializable(indexPageList);
         out.writeInt(startPage);
         out.writeInt(endPage);
+        out.writeByte((byte) (isNoSubCategory ? 1 : 0));
     }
 
     private Category(Parcel in) {
@@ -105,6 +117,11 @@ public class Category implements Parcelable {
 
         setStartPage(in.readInt());
         setEndPage(in.readInt());
+
+
+        if (in.readByte() == 1){
+            setNoSubCategory(true);
+        }
 
 
     }

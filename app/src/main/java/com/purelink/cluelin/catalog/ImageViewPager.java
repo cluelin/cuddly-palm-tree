@@ -27,12 +27,12 @@ public class ImageViewPager extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        startPage = getArguments().getInt(INDEX_SELECTION.START_PAGE) - 1;
+        startPage = getArguments().getInt(INDEX_SELECTION.START_PAGE);
         endPage  = getArguments().getInt(INDEX_SELECTION.END_PAGE);
 
         Log.d("태그", "onAttach 호출");
 
-        Log.d("태그", "startPage : " + startPage + "endPage : " + endPage);
+        Log.d("태그", "startPage : " + startPage + " endPage : " + endPage);
 
         if(CatalogPDF.bitmap.size() < endPage - startPage + 1){
 

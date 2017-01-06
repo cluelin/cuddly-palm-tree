@@ -9,8 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.purelink.cluelin.catalog.Category.Category;
+import com.purelink.cluelin.catalog.Category.NoSubCategory;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,9 +42,24 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        setIndexPage();
+        Log.d("태그", "category.getClass() : " + category.getClass());
+        Log.d("태그", "category.isNoSubCategory() : " + category.isNoSubCategory());
+
+
+
+        if (category.isNoSubCategory()){
+
+            sendSubCategoryInformation(0);
+            finish();
+
+        }else{
+            Log.d("태그", "NoSubCategory 의 자손이 아님");
+            setIndexPage();
+        }
+
 
     }
+
 
     public void setIndexPage() {
 
@@ -73,6 +90,12 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         Log.d("time", "서브 카테고리 클릭됨");
 
+        sendSubCategoryInformation(v.getId());
+
+    }
+
+    public void sendSubCategoryInformation(int SubCategoryOrder){
+
         Intent intent = new Intent(this, CatalogContents.class);
         intent.putExtra(INDEX_SELECTION.PDF_NAME, category.getPdfFileName());
 
@@ -80,12 +103,10 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         //can be improve.
         //but now it works.
         //maybe later..
-        intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList().get(v.getId()));
+        intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList().get(SubCategoryOrder));
 
         intent.putExtra(INDEX_SELECTION.START_PAGE, category.getStartPage());
         intent.putExtra(INDEX_SELECTION.END_PAGE, category.getEndPage());
-        
-
 
         startActivity(intent);
 

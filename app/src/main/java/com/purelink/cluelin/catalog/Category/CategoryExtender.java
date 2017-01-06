@@ -23,6 +23,9 @@ public class CategoryExtender extends Category {
         getIndexPageList().add(42);
         getIndexPageList().add(49);
 
+        setStartPage(32);
+        setEndPage(60);
+
         setCategoryName("Extender");
         setPdfFileName(INDEX_SELECTION.EXTENDER);
 

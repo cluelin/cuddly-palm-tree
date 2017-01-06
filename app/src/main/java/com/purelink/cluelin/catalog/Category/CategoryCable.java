@@ -24,6 +24,9 @@ public class CategoryCable extends Category {
         getIndexPageList().add(85);
         getIndexPageList().add(89);
 
+        setStartPage(82);
+        setEndPage(94);
+
         setCategoryName("Cable");
         setPdfFileName(INDEX_SELECTION.CABLE);
 

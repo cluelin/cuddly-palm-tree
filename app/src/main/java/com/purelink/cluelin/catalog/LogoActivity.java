@@ -17,7 +17,8 @@ public class LogoActivity extends AppCompatActivity {
         Thread logoTimer = new Thread() {
             public void run() {
                 try {
-                    sleep(500);
+
+                    sleep(1000);
                     Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(mainIntent);
                 } catch (InterruptedException e) {
@@ -33,23 +34,6 @@ public class LogoActivity extends AppCompatActivity {
 
         catalogPDF = new CatalogPDF(this);
 
-//
-//        SharedPreferences appSharedPrefs = PreferenceManager
-//                .getDefaultSharedPreferences(this.getApplicationContext());
-//        Gson gson = new Gson();
-//        try{
-//            String json = appSharedPrefs.getString("MyObject", "");
-//            Type type = new TypeToken<ArrayList<Bitmap>>(){}.getType();
-//            ArrayList<Bitmap> bitmap= gson.fromJson(json, type);
-//
-//
-//            Log.d("tag", "비트맵 복원함 ㅎㅎ");
-//            ImageViewPager.FlagForBitmap = false;
-//            ImageViewPager.bitmap = bitmap;
-//
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
 
     }
 }
