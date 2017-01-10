@@ -1,5 +1,6 @@
 package com.purelink.cluelin.catalog.Category;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
@@ -17,6 +18,7 @@ public class Category implements Parcelable{
 
     private ArrayList<String> subCategoryList = new ArrayList<>();
     private ArrayList<Integer> indexPageList = new ArrayList<>();
+    private ArrayList<Integer> buttonImage = new ArrayList<>();
 
 
     public int startPage;
@@ -68,6 +70,14 @@ public class Category implements Parcelable{
         this.subCategoryList = subCategoryList;
     }
 
+    public ArrayList<Integer> getButtonImage() {
+        return buttonImage;
+    }
+
+    public void setButtonImage(ArrayList buttonImage){
+        this.buttonImage = buttonImage;
+    }
+
     public int getStartPage() {
         return startPage;
     }
@@ -101,6 +111,7 @@ public class Category implements Parcelable{
         out.writeInt(startPage);
         out.writeInt(endPage);
         out.writeByte((byte) (isNoSubCategory ? 1 : 0));
+        out.writeSerializable(buttonImage);
     }
 
     private Category(Parcel in) {
@@ -122,6 +133,8 @@ public class Category implements Parcelable{
         if (in.readByte() == 1){
             setNoSubCategory(true);
         }
+
+        setButtonImage((ArrayList) in.readSerializable());
 
 
     }

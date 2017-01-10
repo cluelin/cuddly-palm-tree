@@ -65,4 +65,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Log.d("태그", "종료될때 호출되나 확인");
+    }
 }

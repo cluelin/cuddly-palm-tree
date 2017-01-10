@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.pdf.PdfRenderer;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -71,8 +72,6 @@ public class CatalogPDF {
 
     public void convertToBitmap(int targetPage, int bitmapTargetPage) {
 
-
-
         mCurrentPage = mPdfRenderer.openPage(targetPage);
 
 
@@ -83,15 +82,14 @@ public class CatalogPDF {
 
         Log.d("태그", "bitmap targetPage 페이지 : " + bitmapTargetPage);
 
-        mCurrentPage.render(bitmap.get(bitmapTargetPage), null, null, android.graphics.pdf.PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+        Log.d("태그", "스케일링 : " + mPdfRenderer.shouldScaleForPrinting());
+
+        mPdfRenderer.shouldScaleForPrinting()
+
+        mCurrentPage.render(bitmap.get(bitmapTargetPage), null, null, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
 
 
         mCurrentPage.close();
-
-
-//        mPdfRenderer.close();
-
-
 
     }
 

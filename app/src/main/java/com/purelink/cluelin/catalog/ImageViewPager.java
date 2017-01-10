@@ -50,12 +50,9 @@ public class ImageViewPager extends Fragment {
         Log.d("태그", "targetPage : " + targetPage);
         Log.d("태그", "targetPage-startPage : " + targetPage + "-" + startPage);
 
-        long start = System.currentTimeMillis();
+
         LogoActivity.catalogPDF.convertToBitmap(targetPage, targetPage - startPage);
 
-        long end = System.currentTimeMillis();
-
-        Log.d("태그", "convertToBitmap(), convert pdf file : " + (end - start)/1000.0);
     }
 
     @Override
@@ -118,7 +115,13 @@ public class ImageViewPager extends Fragment {
             Log.d("태그", "bitmap size : " + CatalogPDF.bitmap.size());
 
             if(position <= ImageViewPager.endPage - ImageViewPager.startPage ){
+                long start = System.currentTimeMillis();
+
                 LogoActivity.catalogPDF.convertToBitmap( position  + startPage , position);
+
+                long end = System.currentTimeMillis();
+
+                Log.d("태그", "convertToBitmap(), convert pdf file : " + (end - start)/1000.0);
             }
 
 

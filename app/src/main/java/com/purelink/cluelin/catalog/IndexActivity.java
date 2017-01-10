@@ -5,14 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.purelink.cluelin.catalog.Category.Category;
-import com.purelink.cluelin.catalog.Category.NoSubCategory;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
@@ -77,10 +76,16 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
             button.setId(i);
             button.setOnClickListener(this);
             button.setTextSize(20);
+//            button.setBackground(getDrawable(category.getButtonImage().get(0)));
+//            button.setScaleType(ImageView.ScaleType.CENTER);
+//            button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50));
+
 
             linearLayout.addView(button);
 
         }
+
+
 
     }
 
