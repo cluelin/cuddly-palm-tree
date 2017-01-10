@@ -33,7 +33,7 @@ public class LogoActivity extends AppCompatActivity {
         };
         logoTimer.start();
 
-        catalogPDF = new CatalogPDF(this);
+//        catalogPDF = new CatalogPDF(this);
 
 
     }

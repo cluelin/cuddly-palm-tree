@@ -109,7 +109,6 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         //but now it works.
         //maybe later..
         intent.putExtra(INDEX_SELECTION.TARGET_PAGE, category.getIndexPageList().get(SubCategoryOrder));
-
         intent.putExtra(INDEX_SELECTION.START_PAGE, category.getStartPage());
         intent.putExtra(INDEX_SELECTION.END_PAGE, category.getEndPage());
 

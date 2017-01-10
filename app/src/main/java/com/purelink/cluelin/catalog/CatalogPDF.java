@@ -11,7 +11,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -84,7 +83,7 @@ public class CatalogPDF {
 
         Log.d("태그", "스케일링 : " + mPdfRenderer.shouldScaleForPrinting());
 
-        mPdfRenderer.shouldScaleForPrinting()
+//        mPdfRenderer.shouldScaleForPrinting()
 
         mCurrentPage.render(bitmap.get(bitmapTargetPage), null, null, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
 

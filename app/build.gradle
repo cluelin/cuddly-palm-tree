@@ -23,22 +23,21 @@ android {
     aaptOptions {
         noCompress "pdf"
     }
+
+    sourceSets {
+        main {
+
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
 
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile 'com.android.support:appcompat-v7:23.0.0'
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:23.0.0'
 
-
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    provided 'com.googlecode.androidannotations:androidannotations:2.7.1'
+    compile 'com.googlecode.androidannotations:androidannotations-api:2.7.1'
+    
 
 }

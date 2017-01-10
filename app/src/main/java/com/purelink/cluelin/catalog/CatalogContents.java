@@ -1,46 +1,76 @@
 package com.purelink.cluelin.catalog;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CatalogContents extends AppCompatActivity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.NonConfigurationInstance;
+import com.googlecode.androidannotations.annotations.OptionsItem;
+import com.googlecode.androidannotations.annotations.ViewById;
+import com.purelink.cluelin.catalog.pdfview.PDFView;
+import com.purelink.cluelin.catalog.pdfview.listener.OnPageChangeListener;
 
 
+import static java.lang.String.format;
+
+
+public class CatalogContents extends SherlockActivity implements OnPageChangeListener {
+
+
+    public static final String SAMPLE_FILE = "sample.pdf";
+
+    public static final String ABOUT_FILE = "about.pdf";
+
+    @ViewById
+    PDFView pdfView;
+
+    @NonConfigurationInstance
+    String pdfName = SAMPLE_FILE;
+
+    @NonConfigurationInstance
+    Integer pageNumber = 1;
+
+    @AfterViews
+    void afterViews() {
+        display(pdfName, false);
+    }
+
+    @OptionsItem
+    public void about() {
+        if (!displaying(ABOUT_FILE))
+            display(ABOUT_FILE, true);
+    }
+
+    private void display(String assetFileName, boolean jumpToFirstPage) {
+        if (jumpToFirstPage) pageNumber = 1;
+        setTitle(pdfName = assetFileName);
+
+        pdfView.fromAsset(assetFileName)
+                .defaultPage(pageNumber)
+                .onPageChange(this)
+                .load();
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog_contents);
+    public void onPageChanged(int page, int pageCount) {
+        pageNumber = page;
+        setTitle(format("%s %s / %s", pdfName, page, pageCount));
+    }
 
-        //저장된 state가 있으면 불러오는거 같은데, 이부분 잘 모르겠음.
-        if (savedInstanceState == null) {
-
-            Intent intent = getIntent();
-
-            //get pdf name, from main Activity.
-            String pdfNameString = intent.getStringExtra(INDEX_SELECTION.PDF_NAME);
-            int targetPage = intent.getIntExtra(INDEX_SELECTION.TARGET_PAGE, 0 );
-
-            //add pdfNameString to bundle object
-            Bundle pdfNameBundle = new Bundle();
-
-            pdfNameBundle.putString("PDF_NAME_IN_ASSET", pdfNameString);
-            pdfNameBundle.putInt("PDF_PAGE_IN_ASSET", targetPage);
-            pdfNameBundle.putInt(INDEX_SELECTION.START_PAGE, intent.getIntExtra(INDEX_SELECTION.START_PAGE, 0));
-            pdfNameBundle.putInt(INDEX_SELECTION.END_PAGE, intent.getIntExtra(INDEX_SELECTION.END_PAGE, 0));
-
-            //send bundle object to ImageViewPager which is rendering PdfPage to bitmap
-            ImageViewPager pdfRendererPage = new ImageViewPager();
-            pdfRendererPage.setArguments(pdfNameBundle);
-
-
-            //pdfRendererPage is subClass of Fragment
-            //add pdfRederer to container.
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, pdfRendererPage)
-                    .commit();
+    @Override
+    public void onBackPressed() {
+        if (ABOUT_FILE.equals(pdfName)) {
+            display(SAMPLE_FILE, true);
+        } else {
+            super.onBackPressed();
         }
+    }
+
+    private boolean displaying(String fileName) {
+        return fileName.equals(pdfName);
     }
 
 }
